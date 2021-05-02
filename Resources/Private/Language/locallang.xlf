@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:md_news_clickcount/Resources/Private/Language/locallang" date="2021-05-02T13:46:55Z" product-name="md_news_clickcount">
+		<header/>
+		<body>
+			<trans-unit id="controllerAction.mdIncreaseCount" resname="controllerAction.mdIncreaseCount">
+				<source>Count views</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,61 @@
+#
+# Plugin configuration for EXT:mdnewsclickcount_count
+# ===================================================
+plugin.tx_mdnewsclickcount_count {
+  view {
+    templateRootPaths {
+      0 = EXT:md_news_clickcount/Resources/Private/Templates/
+      1 = {$plugin.tx_mdnewsclickcount_count.view.templateRootPath}
+    }
+
+    partialRootPaths {
+      0 = EXT:md_news_clickcount/Resources/Private/Partials/
+      1 = {$plugin.tx_mdnewsclickcount_count.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:md_news_clickcount/Resources/Private/Layouts/
+      1 = {$plugin.tx_mdnewsclickcount_count.view.layoutRootPath}
+    }
+  }
+
+  persistence {
+    #storagePid = {$plugin.tx_mdnewsclickcount_count.persistence.storagePid}
+    #recursive = 1
+  }
+
+  features {
+    #skipDefaultArguments = 1
+    # if set to 1, the enable fields are ignored in BE context
+    ignoreAllEnableFieldsInBe = 0
+    # Should be on by default, but can be disabled if all action in the plugin are uncached
+    requireCHashArgumentForActionArguments = 1
+  }
+
+  mvc {
+    #callDefaultActionIfActionCantBeResolved = 1
+  }
+
+}
+
+// add "mdNewsClickcountCount" to news ordering to allowed properties in news plugin
+//
+plugin.tx_news.settings.orderByAllowed := addToList(mdNewsClickcountCount)
+
+
+
+// Library to increase click count for news records
+//
+lib.newsIncreaseCount = USER
+lib.newsIncreaseCount {
+  userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+  pluginName = Pi1
+  extensionName = News
+  vendorName = GeorgRinger
+
+  switchableControllerActions {
+    News {
+      1 = mdIncreaseCount
+    }
+  }
+}

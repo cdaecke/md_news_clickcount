@@ -1,0 +1,14 @@
+plugin.tx_mdnewsclickcount_count {
+    view {
+        # cat=plugin.tx_mdnewsclickcount_count/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:md_news_clickcount/Resources/Private/Templates/
+        # cat=plugin.tx_mdnewsclickcount_count/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:md_news_clickcount/Resources/Private/Partials/
+        # cat=plugin.tx_mdnewsclickcount_count/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:md_news_clickcount/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_mdnewsclickcount_count//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
