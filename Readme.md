@@ -1,8 +1,7 @@
 # TYPO3 Extension `md_news_clickcount`
-With this extension you are able, to count views of `ext:news`-records.
-
-It integrates a new option in the plugin of `ext:news` to count all views of a news record and a configuration to show records ordered by views. On top
-there is a scheduler task for automatically reset all counts.
+With this extension you are able, to count views of `ext:news`-records. Additionally it integrates a new option
+in the plugin of `ext:news` to show records ordered by views. On top there is a scheduler task for automatically
+reset all counts.
 
 ## Requirements
 - TYPO3 >= 10.4
@@ -15,15 +14,7 @@ there is a scheduler task for automatically reset all counts.
 ## Usage
 
 ### Count views
-There are two ways of counting views:
-
-#### 1. News plugin
-- Insert the plugin `News system` of `ext:news` on the news detail page
-- In `Settings` tab select `Count views` in the `What to display` dropdown
-- Save and close
-
-#### 2. TypoScript
-- Include `<f:cObject typoscriptObjectPath="lib.newsIncreaseCount"/>` in the news detail template
+- Include `<f:cObject typoscriptObjectPath="lib.newsIncreaseCount"/>` in the news detail view template
 
 ### Show most read news
 - Insert the plugin `News system` of `ext:news` on a page

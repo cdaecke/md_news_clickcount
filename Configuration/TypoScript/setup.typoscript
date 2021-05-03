@@ -35,18 +35,15 @@ plugin.tx_mdnewsclickcount_count {
   mvc {
     #callDefaultActionIfActionCantBeResolved = 1
   }
-
 }
 
 // add "mdNewsClickcountCount" to news ordering to allowed properties in news plugin
 //
 plugin.tx_news.settings.orderByAllowed := addToList(mdNewsClickcountCount)
 
-
-
 // Library to increase click count for news records
 //
-lib.newsIncreaseCount = USER
+lib.newsIncreaseCount = USER_INT
 lib.newsIncreaseCount {
   userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
   pluginName = Pi1
