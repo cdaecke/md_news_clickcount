@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Mediadreams\MdNewsClickcount\:
+    resource: '../Classes/*'
+
+  Mediadreams\MdNewsClickcount\Command\ClearViewsCommand:
+    tags:
+      - name: 'console.command'
+        command: 'mdNewsClickcount:clearViewsCommand'
+        description: 'Clears all view counts for news records'
