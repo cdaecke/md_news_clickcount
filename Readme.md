@@ -1,5 +1,5 @@
 # TYPO3 Extension `md_news_clickcount`
-With this extension you are able, to count views of `ext:news`-records. Additionally it integrates a new option
+With this extension you are able, to count views/clicks of `ext:news`-records. Additionally it integrates a new option
 in the plugin of `ext:news` to show records ordered by views. On top there is a scheduler task for automatically
 reset all counts.
 
@@ -8,7 +8,7 @@ reset all counts.
 - ext:news >= 8.0
 
 ## Installation
-- Install the extension by using the extension manager or use composer
+- Install the extension by using the extension manager or use composer (`composer req mediadreams/md_news_clickcount`)
 - Include the static TypoScript of the extension
 
 ## Usage
