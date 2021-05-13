@@ -2,7 +2,7 @@
     "name": "mediadreams/md_news_clickcount",
     "type": "typo3-cms-extension",
     "description": "With this TYPO3 extension you are able to count views of ext:news records. You can display a list with most viewed news and delete the statistics automatically with a scheduler task.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "GPL-2.0+",
 	"keywords": [
 		"TYPO3",
