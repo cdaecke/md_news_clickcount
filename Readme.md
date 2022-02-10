@@ -4,8 +4,8 @@ in the plugin of `ext:news` to show records ordered by views. On top there is a 
 reset all counts.
 
 ## Requirements
-- TYPO3 >= 10.4
-- ext:news >= 8.0
+- TYPO3 >= 11.4
+- ext:news >= 9.2
 
 ## Installation
 - Install the extension by using the extension manager or use composer (`composer req mediadreams/md_news_clickcount`)
