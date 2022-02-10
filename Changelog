@@ -1,3 +1,13 @@
+Version 2.0.0 (2022-02-10)
+    - [FEATURE] TYPO3 11 compatibility
+
+    Attention
+    - Unfortunately ext:news >=9.0,<9.2 is not working with this extension
+    - Unfortunately the combination of ext:news >9.0 and TYPO3 10.4 is not working with this extension
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v1.0.1...v2.0.0
+
 Version 1.0.1 (2021-05-13)
     - change extension state to "stable"
 
