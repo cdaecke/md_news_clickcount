@@ -6,6 +6,7 @@ services:
 
   Mediadreams\MdNewsClickcount\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
 
   Mediadreams\MdNewsClickcount\Command\ClearViewsCommand:
     tags:
