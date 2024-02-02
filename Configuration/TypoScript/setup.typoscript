@@ -46,13 +46,7 @@ plugin.tx_news.settings.orderByAllowed := addToList(mdNewsClickcountCount)
 lib.newsIncreaseCount = USER_INT
 lib.newsIncreaseCount {
   userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-  pluginName = Pi1
-  extensionName = News
-  vendorName = GeorgRinger
-
-  switchableControllerActions {
-    News {
-      1 = mdIncreaseCount
-    }
-  }
+  pluginName = Count
+  extensionName = MdNewsClickcount
+  vendorName = Mediadreams
 }

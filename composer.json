@@ -23,8 +23,8 @@
 		"source": "https://github.com/cdaecke/md_news_clickcount"
 	},
 	"require": {
-		"typo3/cms-core": "^11.5",
-		"georgringer/news": ">=9.2,<11.0"
+		"typo3/cms-core": ">=11.0,<13.0",
+		"georgringer/news": ">=9.2,<12.0"
 	},
 	"autoload": {
 		"psr-4": {

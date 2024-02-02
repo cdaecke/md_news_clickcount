@@ -13,27 +13,54 @@ namespace Mediadreams\MdNewsClickcount\Controller;
  * (c) 2021 Christoph Daecke <typo3@mediadreams.org>
  */
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
 /**
  * NewsController
  */
-class NewsController extends \GeorgRinger\News\Controller\NewsController
+class NewsController extends ActionController
 {
 
     /**
      * action mdIncreaseCount
      *
-     * @param \Mediadreams\MdNewsClickcount\Domain\Model\News $news
-     * @return string
+     * @return ResponseInterface
+     *
+     * @throws \Doctrine\DBAL\DBALException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function mdIncreaseCountAction(\Mediadreams\MdNewsClickcount\Domain\Model\News $news)
+    public function mdIncreaseCountAction(): ResponseInterface
     {
-        if ($news) {
-            $news->addClick();
-            $this->newsRepository->update($news);
+        $newsUid = $this->getRequest()->getQueryParams()['tx_news_pi1']['news'] ?? null;
+
+        if ($newsUid !== null) {
+            $newsUid = (int)$newsUid;
+
+            // Do not use `$this->newsRepository->update($news)` since this will update the field `tstamp` as well.
+            $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getConnectionForTable('tx_news_domain_model_news');
+
+            $connection->executeStatement('
+                UPDATE tx_news_domain_model_news
+                SET md_news_clickcount_count = md_news_clickcount_count+1
+                WHERE uid=' . $newsUid
+            );
         }
 
-        return '';
+        // Return empty html
+        return $this->htmlResponse('');
+    }
+
+    /**
+     * @return ServerRequestInterface
+     */
+    protected function getRequest(): ServerRequestInterface
+    {
+        return $GLOBALS['TYPO3_REQUEST'];
     }
 }
