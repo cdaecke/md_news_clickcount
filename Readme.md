@@ -4,7 +4,7 @@ in the plugin of `ext:news` to show records ordered by views. On top there is a 
 reset all counts.
 
 ## Requirements
-- TYPO3 >= 11.4
+- TYPO3 11.5 || 12.4
 - ext:news >= 9.2
 
 ## Installation
@@ -22,6 +22,18 @@ reset all counts.
 - Select `Views` in the `Sort by` dropdown
 - Select a `Sort direction` (`Descending` will show the most viewed articles first)
 - Save and close
+
+### Spam prevention
+In the TypoScript settings, you are able to set `daysForNextCount`, which adds an IP check. So multiple views of the same
+IP address in the given timespan (days) will be counted just once.
+
+By default this functionality is disabled (`daysForNextCount = 0`)
+
+ATTENTION:
+
+If you have set `daysForNextCount` to something higher than 0, please make sure, that you activate the scheduler task
+`mdNewsClickcount:cleanupLogCommand` of type `Execute console commands` in order to meet the GDPR requirements! This
+will clean up the log.
 
 ### Clear views
 - Add a scheduler task of type `Execute console commands`

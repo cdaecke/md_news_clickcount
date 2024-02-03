@@ -35,6 +35,15 @@ plugin.tx_mdnewsclickcount_count {
   mvc {
     #callDefaultActionIfActionCantBeResolved = 1
   }
+
+  settings {
+    # Allow counting only, if the timespan has elapsed
+    # Deactivate this check by setting it to 0
+    # ATTENTION:
+    # If activated, make sure to setup the console command `mdNewsClickcount:cleanupLogCommand`
+    # to meet GDPR requirements!
+    daysForNextCount = 0
+  }
 }
 
 // add "mdNewsClickcountCount" to news ordering to allowed properties in news plugin

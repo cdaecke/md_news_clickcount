@@ -13,3 +13,9 @@ services:
       - name: 'console.command'
         command: 'mdNewsClickcount:clearViewsCommand'
         description: 'Clears all view counts for news records'
+
+  Mediadreams\MdNewsClickcount\Command\CleanupLogCommand:
+    tags:
+      - name: 'console.command'
+        command: 'mdNewsClickcount:cleanupLogCommand'
+        description: 'Cleans up the click count log'
