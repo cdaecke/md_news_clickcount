@@ -12,7 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class ClearViewsCommand
- * call this command in terminal with `php typo3/sysext/core/bin/typo3 mdNewsClickcount:clearViewsCommand`
+ * call this command in terminal with `vendor/bin/typo3 mdNewsClickcount:clearViewsCommand`
  *
  * @package Mediadreams\MdNewsClickcount\Command
  */
@@ -44,7 +44,7 @@ class ClearViewsCommand extends Command
         $queryBuilder
             ->update('tx_news_domain_model_news')
             ->set('md_news_clickcount_count', 0)
-            ->execute();
+            ->executeQuery();
 
         $io->writeln('Click count successfully removed.');
         return Command::SUCCESS;

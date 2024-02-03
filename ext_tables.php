@@ -7,7 +7,6 @@ call_user_func(
         /**
          * Add option to "Sort by"-selectbox of news plugin
          */
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] =
-            $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'].',mdNewsClickcountCount';
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] .= ',mdNewsClickcountCount';
     }
 );
