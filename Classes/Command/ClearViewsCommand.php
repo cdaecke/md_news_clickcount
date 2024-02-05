@@ -44,7 +44,7 @@ class ClearViewsCommand extends Command
         $queryBuilder
             ->update('tx_news_domain_model_news')
             ->set('md_news_clickcount_count', 0)
-            ->executeQuery();
+            ->executeStatement();
 
         $io->writeln('Click count successfully removed.');
         return Command::SUCCESS;
