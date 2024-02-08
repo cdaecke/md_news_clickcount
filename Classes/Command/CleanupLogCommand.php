@@ -3,14 +3,23 @@ declare(strict_types=1);
 
 namespace Mediadreams\MdNewsClickcount\Command;
 
+/**
+ *
+ * This file is part of the "News click count" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * (c) 2021 Christoph Daecke <typo3@mediadreams.org>
+ */
+
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * Class CleanupLogCommand
@@ -58,33 +67,16 @@ class CleanupLogCommand extends Command
     }
 
     /**
-     * @return string Formatted date
-     */
-    /**
-     * @return false|string
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     * @return false|string Formatted date
+     * @throws \TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException
+     * @throws \TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException
      */
     protected function getAllowedTimeFrame()
     {
-        $time = 86400 * ($this->getDaysForNextCount() + 1);
+        $configuration = GeneralUtility::makeInstance(ExtensionConfiguration::class)
+            ->get('md_news_clickcount');
+
+        $time = 86400 * ((int)$configuration['daysForNextCount'] + 1);
         return date('Y-m-d', $GLOBALS['EXEC_TIME'] - $time);
-    }
-
-    /**
-     * @return int
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     */
-    private function getDaysForNextCount(): int
-    {
-        $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
-        $typoscript = $configurationManager->getConfiguration(
-            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
-        );
-
-        if (isset($typoscript['plugin.']['tx_mdnewsclickcount_count.']['settings.']['daysForNextCount'])) {
-            return (int)$typoscript['plugin.']['tx_mdnewsclickcount_count.']['settings.']['daysForNextCount'];
-        } else {
-            return 0;
-        }
     }
 }

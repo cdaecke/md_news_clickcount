@@ -1,0 +1,3 @@
+
+# cat=basic/enable/30; type=integer; label=Days after voting from same IP address is allowed. Set to 0 to ignore IP restriction.
+daysForNextCount = 0

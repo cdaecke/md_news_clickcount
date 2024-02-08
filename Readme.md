@@ -14,7 +14,10 @@ reset all counts.
 ## Usage
 
 ### Count views
-- Include `<f:cObject typoscriptObjectPath="lib.newsIncreaseCount"/>` in the news detail view template
+- In the news detail view template add the following code:<br>
+`{md:getCountImg(newsUid: '{newsItem.uid}', pageUid: '{contentObjectData.pid}')}`<br>
+Make sure, that you import the namespace to the ViewHelper by adding the following line at the top of the template:
+`{namespace md=Mediadreams\MdNewsClickcount\ViewHelpers}`
 
 ### Show most read news
 - Insert the plugin `News system` of `ext:news` on a page
@@ -24,7 +27,7 @@ reset all counts.
 - Save and close
 
 ### Spam prevention
-In the TypoScript settings, you are able to set `daysForNextCount`, which adds an IP check. So multiple views of the same
+In the extension settings, you are able to set `daysForNextCount`, which adds an IP check. So multiple views of the same
 IP address in the given timespan (days) will be counted just once.
 
 By default this functionality is disabled (`daysForNextCount = 0`)
