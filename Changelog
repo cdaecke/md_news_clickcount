@@ -1,3 +1,17 @@
+Version 3.0.0 (2024-02-28)
+    - [FEATURE] Compatibility with TYPO3 v12
+    - [FEATURE] Compatibility with ext:news v11
+
+    - [!!!BREAKING] Switch counting logic from controller to middleware
+
+    If you upgrade from a previous version replace all occurrences of
+    `<f:cObject typoscriptObjectPath="lib.newsIncreaseCount"/>`
+    with `<img src="/md-newsimg-{newsItem.uid}.gif" alt="" width="1" height="1" aria-hidden="true" />`
+    in the detail template of the news extension.
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v2.0.1...v3.0.0
+
 Version 2.0.1 (2022-09-27)
     - [FEATURE] Compatibility with ext:news v10
 
