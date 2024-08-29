@@ -1,4 +1,10 @@
 Version 3.0.0 (2024-02-28)
+    - [TASK] use request object for siteUrl in viewhelper
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v3.0.0...v3.0.1
+
+Version 3.0.0 (2024-02-28)
     - [FEATURE] Compatibility with TYPO3 v12
     - [FEATURE] Compatibility with ext:news v11
 
@@ -6,8 +12,10 @@ Version 3.0.0 (2024-02-28)
 
     If you upgrade from a previous version replace all occurrences of
     `<f:cObject typoscriptObjectPath="lib.newsIncreaseCount"/>`
-    with `<img src="/md-newsimg-{newsItem.uid}.gif" alt="" width="1" height="1" aria-hidden="true" />`
+    with `{md:getCountImg(newsUid: '{newsItem.uid}', pageUid: '{contentObjectData.pid}')}`
     in the detail template of the news extension.
+    Make sure, that you import the namespace to the ViewHelper by adding the following line at the top of the template:
+    `{namespace md=Mediadreams\MdNewsClickcount\ViewHelpers}`
 
     All changes
         https://github.com/cdaecke/md_news_clickcount/compare/v2.0.1...v3.0.0
