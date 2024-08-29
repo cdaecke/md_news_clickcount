@@ -14,7 +14,6 @@ namespace Mediadreams\MdNewsClickcount\ViewHelpers;
  * (c) 2024 Christoph Daecke <typo3@mediadreams.org>
  */
 
-use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -36,15 +35,11 @@ final class GetCountImgViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): string {
-
-        $sitePath = GeneralUtility::makeInstance(SiteFinder::class)
-            ->getSiteByPageId($arguments['pageUid'])
-            ->getBase()
-            ->getPath();
+        $siteUrl = $renderingContext->getRequest()->getAttribute('normalizedParams')->getSiteUrl();
 
         return sprintf(
             '<img src="%smd-newsimg-%s.gif" alt="" width="1" height="1" aria-hidden="true" />',
-            $sitePath,
+            $siteUrl,
             $arguments['newsUid']
         );
     }
