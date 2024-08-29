@@ -1,4 +1,4 @@
-Version 3.0.0 (2024-02-28)
+Version 3.0.1 (2024-08-29)
     - [TASK] use request object for siteUrl in viewhelper
 
     All changes
