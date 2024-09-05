@@ -1,3 +1,9 @@
+Version 3.0.2 (2024-09-05)
+    - [TASK] make scheduler command compatible with symfony/console v7
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v3.0.1...v3.0.2
+
 Version 3.0.1 (2024-08-29)
     - [TASK] use request object for siteUrl in viewhelper
 
