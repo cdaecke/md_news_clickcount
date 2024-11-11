@@ -1,3 +1,9 @@
+Version 3.0.3 (2024-11-11)
+    - [FEATURE] Compatibility with ext:news v12
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v3.0.2...v3.0.3
+
 Version 3.0.2 (2024-09-05)
     - [TASK] make scheduler command compatible with symfony/console v7
 
