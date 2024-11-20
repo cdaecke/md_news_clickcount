@@ -115,7 +115,7 @@ class CountMiddleware implements MiddlewareInterface
                 ->count('*')
                 ->from(self::LOG_TABLE)
                 ->where(
-                    $queryBuilder->expr()->eq('news', $queryBuilder->createNamedParameter((int)$this->newsUid, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('news', $queryBuilder->createNamedParameter($this->newsUid, \PDO::PARAM_INT)),
                     $queryBuilder->expr()->eq('ip', $queryBuilder->createNamedParameter($ip, \PDO::PARAM_STR)),
                     $queryBuilder->expr()->gte('log_date', $queryBuilder->createNamedParameter($this->getAllowedTimeFrame(), \PDO::PARAM_STR)),
                 )
