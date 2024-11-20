@@ -1,3 +1,9 @@
+Version 3.0.4 (2024-11-19)
+    - [BUGFIX] get correct count value from database. use `\PDO::PARAM_INT` for the news id and `\PDO::PARAM_STR` for the log_date in the queryBuilder
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v3.0.3...v3.0.4
+
 Version 3.0.3 (2024-11-11)
     - [FEATURE] Compatibility with ext:news v12
 
