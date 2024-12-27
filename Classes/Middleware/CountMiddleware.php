@@ -37,29 +37,20 @@ class CountMiddleware implements MiddlewareInterface
     protected $configuration = [];
 
     /**
-     * @var integer
+     * @var int
      */
     protected $newsUid = 0;
 
     /**
      * @var ResponseFactoryInterface
      */
-    private $responseFactory;
+    protected $responseFactory;
 
-    /**
-     * CountMiddleware constructor.
-     * @param ResponseFactoryInterface $responseFactory
-     */
     public function __construct(ResponseFactoryInterface $responseFactory)
     {
         $this->responseFactory = $responseFactory;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $normalizedParams = $request->getAttribute('normalizedParams');
@@ -73,7 +64,6 @@ class CountMiddleware implements MiddlewareInterface
                     $this->configuration = GeneralUtility::makeInstance(ExtensionConfiguration::class)
                         ->get('md_news_clickcount');
                 } catch (\Exception $e) {
-
                 }
 
                 $this->count();
@@ -98,15 +88,14 @@ class CountMiddleware implements MiddlewareInterface
      */
     protected function count(): void
     {
-        $ip = GeneralUtility::getIndpEnv('REMOTE_ADDR');
-        $count = null;
-
         if (
             !isset($this->configuration['daysForNextCount'])
             || (int)$this->configuration['daysForNextCount'] === 0
         ) {
             $count = 0;
         } else {
+            $ip = GeneralUtility::getIndpEnv('REMOTE_ADDR');
+
             // Check log
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable(self::LOG_TABLE);
@@ -148,9 +137,6 @@ class CountMiddleware implements MiddlewareInterface
 
     /**
      * Extract the News Uid from the URI string
-     *
-     * @param string $uri
-     * @return int
      */
     protected function getUidFromUri(string $uri): int
     {
@@ -159,25 +145,17 @@ class CountMiddleware implements MiddlewareInterface
 
         if (count($matches) === 0) {
             return 0;
-        } else {
-            return (int)$matches[0];
         }
+
+        return (int)$matches[0];
     }
 
-    /**
-     * Get current date
-     *
-     * @return string Formatted date
-     */
-    protected function getCurrentDate()
+    protected function getCurrentDate(): string
     {
         return date('Y-m-d', $GLOBALS['EXEC_TIME']);
     }
 
-    /**
-     * @return string Formatted date
-     */
-    protected function getAllowedTimeFrame()
+    protected function getAllowedTimeFrame(): string
     {
         $time = 86400 * (int)$this->configuration['daysForNextCount'];
         return date('Y-m-d', $GLOBALS['EXEC_TIME'] - $time);
