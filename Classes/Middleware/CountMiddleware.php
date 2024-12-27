@@ -82,7 +82,10 @@ class CountMiddleware implements MiddlewareInterface
             $pixel = base64_decode("R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==");
 
             $response = $this->responseFactory->createResponse()
-                ->withHeader('Content-Type', 'image/gif');
+                ->withHeader('Content-Type', 'image/gif')
+                ->withHeader('Cache-Control', 'max-age=0, no-cache, no-store, must-revalidate')
+                ->withHeader('Pragma', 'no-cache')
+                ->withHeader('Expires', '0');
             $response->getBody()->write($pixel);
 
             return $response;
