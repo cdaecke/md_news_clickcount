@@ -1,3 +1,9 @@
+Version 3.0.5 (2025-01-13)
+    - [BUGFIX] Do not cache the response image
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v3.0.4...v3.0.5
+
 Version 3.0.4 (2024-11-19)
     - [BUGFIX] get correct count value from database. use `\PDO::PARAM_INT` for the news id and `\PDO::PARAM_STR` for the log_date in the queryBuilder
 
