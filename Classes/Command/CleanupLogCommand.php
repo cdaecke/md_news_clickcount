@@ -13,6 +13,7 @@ namespace Mediadreams\MdNewsClickcount\Command;
  * (c) 2021 Christoph Daecke <typo3@mediadreams.org>
  */
 
+use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,7 +39,7 @@ class CleanupLogCommand extends Command
     }
 
     /**
-     * Executes the command for showing sys_log entries
+     * Executes the command for deleting `tx_mdnewsclickcount_log` entries
      *
      * @param InputInterface $input
      * @param OutputInterface $output
@@ -57,7 +58,7 @@ class CleanupLogCommand extends Command
             ->where(
                 $queryBuilder->expr()->lt(
                     'log_date',
-                    $queryBuilder->createNamedParameter($this->getAllowedTimeFrame(), \PDO::PARAM_STR)
+                    $queryBuilder->createNamedParameter($this->getAllowedTimeFrame(), ParameterType::STRING)
                 )
             )
             ->executeStatement();
