@@ -4,8 +4,8 @@ in the plugin of `ext:news` to show records ordered by views. On top there is a 
 reset all counts.
 
 ## Requirements
-- TYPO3 11.5 || 12.4
-- ext:news >= 9.2
+- TYPO3 12.4 || 13.4
+- ext:news >= 11.0
 
 ## Installation
 - Install the extension by using the extension manager or use composer (`composer req mediadreams/md_news_clickcount`)
@@ -15,7 +15,7 @@ reset all counts.
 
 ### Count views
 - In the news detail view template add the following code:<br>
-`{md:getCountImg(newsUid: '{newsItem.uid}', pageUid: '{contentObjectData.pid}')}`<br>
+`{md:getCountImg(newsUid: '{newsItem.uid}')}`<br>
 Make sure, that you import the namespace to the ViewHelper by adding the following line at the top of the template:
 `{namespace md=Mediadreams\MdNewsClickcount\ViewHelpers}`
 
