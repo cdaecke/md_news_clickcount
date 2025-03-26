@@ -40,9 +40,7 @@ final class GetCountImgViewHelper extends AbstractViewHelper
 
         $request = $this->getRequest();
 
-        if (!$request instanceof ServerRequestInterface) {
-            return '';
-        } else {
+        if ($request instanceof ServerRequestInterface) {
             $siteUrl = $request->getAttribute('normalizedParams')->getSiteUrl();
 
             return sprintf(
@@ -51,6 +49,8 @@ final class GetCountImgViewHelper extends AbstractViewHelper
                 $this->arguments['newsUid']
             );
         }
+
+        return '';
     }
 
     private function getRequest(): ServerRequestInterface|null
