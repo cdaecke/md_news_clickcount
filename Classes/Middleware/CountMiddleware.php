@@ -32,14 +32,8 @@ class CountMiddleware implements MiddlewareInterface
 {
     const LOG_TABLE = 'tx_mdnewsclickcount_log';
 
-    /**
-     * @var array
-     */
     protected array $configuration = [];
 
-    /**
-     * @var int
-     */
     protected int $newsUid = 0;
 
     public function __construct(protected ResponseFactoryInterface $responseFactory)
