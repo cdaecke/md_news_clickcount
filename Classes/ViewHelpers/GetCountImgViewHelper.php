@@ -40,17 +40,17 @@ final class GetCountImgViewHelper extends AbstractViewHelper
 
         $request = $this->getRequest();
 
-        if ($request instanceof ServerRequestInterface) {
-            $siteUrl = $request->getAttribute('normalizedParams')->getSiteUrl();
-
-            return sprintf(
-                '<img src="%smd-newsimg-%s.gif" alt="" width="1" height="1" aria-hidden="true" />',
-                $siteUrl,
-                $this->arguments['newsUid']
-            );
+        if (!$request instanceof ServerRequestInterface) {
+            return '';
         }
 
-        return '';
+        $siteUrl = $request->getAttribute('normalizedParams')->getSiteUrl();
+
+        return sprintf(
+            '<img src="%smd-newsimg-%s.gif" alt="" width="1" height="1" aria-hidden="true" />',
+            $siteUrl,
+            $this->arguments['newsUid']
+        );
     }
 
     private function getRequest(): ServerRequestInterface|null
