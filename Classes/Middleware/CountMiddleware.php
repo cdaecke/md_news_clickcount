@@ -36,9 +36,9 @@ class CountMiddleware implements MiddlewareInterface
 
     protected int $newsUid = 0;
 
-    public function __construct(protected ResponseFactoryInterface $responseFactory)
-    {
-
+    public function __construct(
+        protected ResponseFactoryInterface $responseFactory
+    ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
