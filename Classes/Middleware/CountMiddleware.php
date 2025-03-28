@@ -14,6 +14,7 @@ namespace Mediadreams\MdNewsClickcount\Middleware;
  * (c) 2024 Christoph Daecke <typo3@mediadreams.org>
  */
 
+use Doctrine\DBAL\ParameterType;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -31,24 +32,13 @@ class CountMiddleware implements MiddlewareInterface
 {
     const LOG_TABLE = 'tx_mdnewsclickcount_log';
 
-    /**
-     * @var array
-     */
-    protected $configuration = [];
+    protected array $configuration = [];
 
-    /**
-     * @var int
-     */
-    protected $newsUid = 0;
+    protected int $newsUid = 0;
 
-    /**
-     * @var ResponseFactoryInterface
-     */
-    protected $responseFactory;
-
-    public function __construct(ResponseFactoryInterface $responseFactory)
-    {
-        $this->responseFactory = $responseFactory;
+    public function __construct(
+        protected ResponseFactoryInterface $responseFactory
+    ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -56,7 +46,7 @@ class CountMiddleware implements MiddlewareInterface
         $normalizedParams = $request->getAttribute('normalizedParams');
         $uri = $normalizedParams->getRequestUri();
 
-        if (strpos($uri, '/md-newsimg') !== false) {
+        if (str_contains($uri, '/md-newsimg')) {
             $this->newsUid = $this->getUidFromUri($uri);
 
             if ($this->newsUid !== 0) {
@@ -107,9 +97,9 @@ class CountMiddleware implements MiddlewareInterface
                 ->count('*')
                 ->from(self::LOG_TABLE)
                 ->where(
-                    $queryBuilder->expr()->eq('news', $queryBuilder->createNamedParameter($this->newsUid, \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->eq('ip', $queryBuilder->createNamedParameter($ip, \PDO::PARAM_STR)),
-                    $queryBuilder->expr()->gte('log_date', $queryBuilder->createNamedParameter($this->getAllowedTimeFrame(), \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('news', $queryBuilder->createNamedParameter($this->newsUid, ParameterType::INTEGER)),
+                    $queryBuilder->expr()->eq('ip', $queryBuilder->createNamedParameter($ip, ParameterType::STRING)),
+                    $queryBuilder->expr()->gte('log_date', $queryBuilder->createNamedParameter($this->getAllowedTimeFrame(), ParameterType::STRING)),
                 )
                 ->executeQuery()
                 ->fetchOne();
