@@ -39,7 +39,6 @@ final class GetCountImgViewHelper extends AbstractViewHelper
         }
 
         $request = $this->getRequest();
-
         if (!$request instanceof ServerRequestInterface) {
             return '';
         }
@@ -53,7 +52,7 @@ final class GetCountImgViewHelper extends AbstractViewHelper
         );
     }
 
-    private function getRequest(): ServerRequestInterface|null
+    private function getRequest(): ?ServerRequestInterface
     {
         if ((new (Typo3Version::class))->getMajorVersion() <= 12) {
             // Todo: remove on dropping TYPO3 v12 support
