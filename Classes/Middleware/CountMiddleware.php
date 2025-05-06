@@ -21,7 +21,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Http\NormalizedParams;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Http\Uri;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -37,12 +42,14 @@ class CountMiddleware implements MiddlewareInterface
     protected int $newsUid = 0;
 
     public function __construct(
-        protected ResponseFactoryInterface $responseFactory
+        protected ResponseFactoryInterface $responseFactory,
+        protected Context $context
     ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        /** @var NormalizedParams $normalizedParams */
         $normalizedParams = $request->getAttribute('normalizedParams');
         $uri = $normalizedParams->getRequestUri();
 
@@ -56,7 +63,9 @@ class CountMiddleware implements MiddlewareInterface
                 } catch (\Exception $e) {
                 }
 
-                $this->count();
+                if ($this->countVisitEnabled($request)) {
+                    $this->count();
+                }
             }
 
             $pixel = base64_decode("R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==");
@@ -72,6 +81,30 @@ class CountMiddleware implements MiddlewareInterface
         }
 
         return $handler->handle($request);
+    }
+
+    protected function countVisitEnabled(ServerRequestInterface $request): bool
+    {
+        if ($request->hasHeader('referer')) {
+            $referer = $request->getHeaderLine('referer');
+            $refererRequest = new ServerRequest(new Uri($referer), 'GET');
+
+            parse_str($refererRequest->getUri()->getQuery(), $params);
+
+            if (!empty($params)) {
+                $refererRequest = $refererRequest->withQueryParams($params);
+                if ($refererRequest->getQueryParams()['tx_news_pi1']['news_preview'] ?? false) {
+                    // Do not track news previews
+                    return false;
+                }
+            }
+        }
+
+        if ($this->context->getAspect('backend.user')->isLoggedIn()) {
+            return (bool)($this->configuration['countVisitsAlsoIfUserIsLoggedIntoBackend'] ?? false);
+        }
+
+        return true;
     }
 
     /**
