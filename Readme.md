@@ -19,6 +19,11 @@ reset all counts.
 Make sure, that you import the namespace to the ViewHelper by adding the following line at the top of the template:
 `{namespace md=Mediadreams\MdNewsClickcount\ViewHelpers}`
 
+Note:
+
+- All hits to a news preview have the speciel parameter `tx_news_pi1%5Bnews_preview%5D`. When this is set, not tracking happens.
+- By default, all hits of logged in backend users will be ignored. Enable visits of logged in backend users in the extension settings, if needed.
+
 ### Show most read news
 - Insert the plugin `News system` of `ext:news` on a page
 - In `Settings` tab select `List view (without overloading detail view)` in the `What to display` dropdown
