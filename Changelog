@@ -1,3 +1,9 @@
+Version 4.0.1 (2025-05-07)
+    - [FEATURE] Ignore hits when logged into backend. Thanks [Simon Schaufelberger](https://github.com/simonschaufi) for this new feature!
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v4.0.0...v4.0.1
+
 Version 4.0.0 (2025-03-28)
     - [FEATURE] TYPO3 v13 compatibility
     - [FEATURE] Compatibility with ext:news v12
@@ -6,7 +12,6 @@ Version 4.0.0 (2025-03-28)
 
     All changes
         https://github.com/cdaecke/md_news_clickcount/compare/v3.0.5...v4.0.0
-
 
 Version 3.0.5 (2025-01-13)
     - [BUGFIX] Do not cache the response image
