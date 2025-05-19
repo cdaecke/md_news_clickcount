@@ -7,9 +7,8 @@ $fields = [
         'exclude' => true,
         'label' => 'LLL:EXT:md_news_clickcount/Resources/Private/Language/locallang_db.xlf:tx_mdnewsclickcount_domain_model_news.md_news_clickcount_count',
         'config' => [
-            'type' => 'input',
+            'type' => 'number',
             'size' => 4,
-            'eval' => 'int'
         ]
     ],
 
