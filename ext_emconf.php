@@ -18,11 +18,11 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'typo3@mediadreams.org',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
-    'version' => '4.0.1',
+    'version' => '4.0.2',
     'constraints' => [
         'depends' => [
             'typo3' => '12.4.0-13.4.99',
-            'news' => '11.0.0-12.9.99',
+            'news' => '11.0.0-13.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],
