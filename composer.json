@@ -24,7 +24,7 @@
 	},
 	"require": {
 		"georgringer/news": ">=11.0 <14.0",
-		"typo3/cms-core": ">=12.0 <14.0"
+		"typo3/cms-core": ">=12.0 <15.0"
 	},
 	"autoload": {
 		"psr-4": {

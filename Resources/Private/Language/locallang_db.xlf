@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:md_news_clickcount/Resources/Private/Language/locallang_db" date="2021-05-02T13:46:55Z" product-name="md_news_clickcount">
+	<file source-language="en" datatype="plaintext" original="EXT:md_news_clickcount/Resources/Private/Language/locallang_db.xlf" date="2021-05-02T13:46:55Z" product-name="md_news_clickcount">
 		<header/>
 		<body>
-			<trans-unit id="tx_mdnewsclickcount_domain_model_news" resname="tx_mdnewsclickcount_domain_model_news">
+			<trans-unit id="tx_mdnewsclickcount_domain_model_news">
 				<source>News</source>
 			</trans-unit>
-			<trans-unit id="tx_mdnewsclickcount_domain_model_news.md_news_clickcount_count" resname="tx_mdnewsclickcount_domain_model_news.md_news_clickcount_count">
+			<trans-unit id="tx_mdnewsclickcount_domain_model_news.md_news_clickcount_count">
 				<source>Number of views</source>
 			</trans-unit>
-			<trans-unit id="tab.md_news_clickcount_count" resname="tab.md_news_clickcount_count">
+			<trans-unit id="tab.md_news_clickcount_count">
 				<source>Views</source>
 			</trans-unit>
 		</body>
