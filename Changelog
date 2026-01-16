@@ -1,3 +1,10 @@
+Version 4.0.3 (2026-01-16)
+    - [TASK] Allow news v14. Thanks [Simon Schaufelberger](https://github.com/simonschaufi) his support!
+    - [TASK] Allow TYPO3 v14. Thanks [Simon Schaufelberger](https://github.com/simonschaufi) his support!
+
+    All changes
+        https://github.com/cdaecke/md_news_clickcount/compare/v4.0.2...v4.0.3
+
 Version 4.0.2 (2025-12-09)
     - [FEATURE] Raise constraint to ext:news
     - [TASK] Use DI and cleanup code
